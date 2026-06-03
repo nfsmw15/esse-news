@@ -1,0 +1,67 @@
+# esse-news
+
+News-System Plugin für [ESSE CMS](https://github.com/nfsmw15/esse-cms).
+
+## Über das Plugin
+
+Fügt ein vollständiges News-System zum ESSE CMS hinzu. Unterstützt öffentliche und interne News, Frontend-Darstellung mit Theme-Integration, vollständige Admin-Verwaltung und WYSIWYG-Editor mit Bild-Upload.
+
+## Voraussetzungen
+
+- [ESSE CMS](https://github.com/nfsmw15/esse-cms) >= 0.1.0
+
+## Installation
+
+1. ZIP-Datei herunterladen (Releases) oder aus dem Quellcode erstellen
+2. Im ESSE Admin unter **Plugins → ZIP hochladen** installieren
+3. Plugin in der Plugin-Liste aktivieren
+
+Die Datenbanktabelle wird beim ersten Aktivieren automatisch angelegt.
+
+### ZIP selbst erstellen
+
+```bash
+zip -r esse-news-v0.0.1.zip esse-news/ \
+  --exclude "*.git*" --exclude "*/.vscode/*"
+```
+
+## Routen
+
+| Route | Beschreibung | Sichtbarkeit |
+|-------|-------------|--------------|
+| `/news` | News-Übersicht | öffentlich |
+| `/news/{id}` | News-Detailseite | öffentlich |
+| `/admin/news` | Admin-Übersicht | admin |
+| `/admin/news/create` | News erstellen | admin |
+| `/admin/news/edit/{id}` | News bearbeiten | admin |
+
+## Features
+
+- News erstellen, bearbeiten, löschen
+- News aktiv / inaktiv schalten
+- Sichtbarkeit: **Intern** (nur eingeloggte Mitglieder) oder **Extern** (öffentlich)
+- Autor wird automatisch vom eingeloggten User gesetzt und ist nicht editierbar
+- WYSIWYG-Editor via **Summernote BS5** (bereits im CMS enthalten) inkl. Bild-Upload
+- Sidebar-Eintrag im Admin-Bereich
+- Frontend-Seiten im CMS registriert (Menü-Dropdown, Slug-Konflikt-Erkennung)
+- Theme-Integration über `page.render`-Hook — funktioniert mit jedem ESSE-Theme
+
+## Dateistruktur
+
+```
+esse-news/
+├── plugin.json           Metadaten (Name, Version, Klasse)
+├── Plugin.php            Hauptklasse — boot(), install(), uninstall()
+├── NewsRepository.php    Datenbankzugriff (CRUD, Migration)
+├── admin/
+│   ├── list.php          Admin-Übersicht aller News
+│   └── form.php          Admin-Formular (Erstellen & Bearbeiten)
+└── frontend/
+    ├── list.php          Frontend-Übersichtsseite (/news)
+    └── detail.php        Frontend-Detailseite (/news/{id})
+```
+
+## Lizenz
+
+Copyright (C) 2026 Andreas P. <https://nfsmw15.de>  
+SPDX-License-Identifier: AGPL-3.0-or-later
