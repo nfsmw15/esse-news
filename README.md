@@ -4,11 +4,16 @@ News-System Plugin für [ESSE CMS](https://github.com/nfsmw15/esse-cms).
 
 ## Über das Plugin
 
-Fügt ein vollständiges News-System zum ESSE CMS hinzu. Unterstützt öffentliche und interne News, Frontend-Darstellung mit Theme-Integration, vollständige Admin-Verwaltung und WYSIWYG-Editor mit Bild-Upload.
+Fügt ein vollständiges News-System zum ESSE CMS hinzu. Unterstützt öffentliche und interne News,
+Frontend-Darstellung mit Theme-Integration, vollständige Admin-Verwaltung und WYSIWYG-Editor mit
+Bild-Upload.
+
+Das Plugin gibt **kein Bootstrap-spezifisches Markup** aus. Alle Ausgaben nutzen die `Esse\Ui`-Schicht
+und funktionieren mit jedem ESSE-Theme, unabhängig vom eingesetzten CSS-Framework oder Icon-Pack.
 
 ## Voraussetzungen
 
-- [ESSE CMS](https://github.com/nfsmw15/esse-cms) >= 0.1.0
+- [ESSE CMS](https://github.com/nfsmw15/esse-cms) >= 0.2.0
 
 ## Installation
 
@@ -21,7 +26,7 @@ Die Datenbanktabelle wird beim ersten Aktivieren automatisch angelegt.
 ### ZIP selbst erstellen
 
 ```bash
-zip -r esse-news-v0.0.1.zip esse-news/ \
+zip -r esse-news-v0.1.0.zip esse-news/ \
   --exclude "*.git*" --exclude "*/.vscode/*"
 ```
 
@@ -41,10 +46,11 @@ zip -r esse-news-v0.0.1.zip esse-news/ \
 - News aktiv / inaktiv schalten
 - Sichtbarkeit: **Intern** (nur eingeloggte Mitglieder) oder **Extern** (öffentlich)
 - Autor wird automatisch vom eingeloggten User gesetzt und ist nicht editierbar
-- WYSIWYG-Editor via **Summernote BS5** (bereits im CMS enthalten) inkl. Bild-Upload
+- WYSIWYG-Editor via **Summernote BS5** inkl. Bild-Upload
 - Sidebar-Eintrag im Admin-Bereich
 - Frontend-Seiten im CMS registriert (Menü-Dropdown, Slug-Konflikt-Erkennung)
-- Theme-Integration über `page.render`-Hook — funktioniert mit jedem ESSE-Theme
+- Theme-Integration über `page.render`-Hook und `Esse\Ui`-Komponenten
+- Icon-Pack-agnostisch — Icon-Namen werden ohne Prefix übergeben, das aktive Pack liefert den Prefix
 
 ## Dateistruktur
 

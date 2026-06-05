@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EsseNews;
 
+use Esse\PageRenderer;
 use Esse\Router;
 
 require_once __DIR__ . '/NewsRepository.php';
@@ -16,13 +17,13 @@ class Plugin extends \Esse\Plugin
 
         $this->addAdminNav('News', '/admin/news', 'bi-newspaper', 'admin.news');
 
-        $this->registerPage('/news',       'News',         'bi-newspaper');
-        $this->registerPage('/news/{id}',  'News-Detail',  'bi-newspaper');
+        $this->registerPage('/news',       'News',         'newspaper');
+        $this->registerPage('/news/{id}',  'News-Detail',  'newspaper');
 
         $base = $this->basePath();
 
         // Frontend
-        Router::get('/news', fn() => require "{$base}/frontend/list.php",
+        Router::get('/news', fn() => PageRenderer::renderFile("{$base}/frontend/list.php", 'News', 'public', 'newspaper'),
             ['name' => 'news.list', 'auth' => 'public']);
 
         Router::get('/news/{id}', function (string $id) use ($base) {

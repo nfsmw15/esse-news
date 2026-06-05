@@ -1,10 +1,10 @@
 {
     "name": "esse-news",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "News-System für ESSE CMS.",
     "author": "Andreas P.",
     "class": "EsseNews\\Plugin",
     "requires": {
-        "esse": ">=0.1.0"
+        "esse": ">=0.2.0"
     }
 }
