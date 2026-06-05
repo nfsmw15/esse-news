@@ -1,5 +1,15 @@
 # Changelog — esse-news
 
+## [0.1.1] — 2026-06-05
+
+### Behoben
+
+- Admin-Templates (`admin/list.php`, `admin/form.php`) fälschlicherweise auf `Esse\Ui::*` migriert —
+  der Admin-Bereich läuft auf Bootstrap 5 und kennt keine `esse-*`-Klassen.
+  Beide Dateien wieder auf direktes Bootstrap-Markup zurückgestellt.
+
+---
+
 ## [0.1.0] — 2026-06-05
 
 ### Theme-agnostische UI-Schicht
