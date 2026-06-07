@@ -2,6 +2,10 @@
 
 News-System Plugin für [ESSE CMS](https://github.com/nfsmw15/esse-cms).
 
+[![Release](https://img.shields.io/github/v/release/nfsmw15/esse-news?label=release&color=blue)](https://github.com/nfsmw15/esse-news/releases)
+[![License](https://img.shields.io/badge/license-AGPL--3.0--or--later-green)](LICENSE)
+[![ESSE CMS](https://img.shields.io/badge/esse--cms-%3E%3D0.2.0-orange)](https://github.com/nfsmw15/esse-cms)
+
 ## Über das Plugin
 
 Fügt ein vollständiges News-System zum ESSE CMS hinzu. Unterstützt öffentliche und interne News,
@@ -52,6 +56,12 @@ zip -r esse-news-v0.1.0.zip esse-news/ \
 - Theme-Integration über `page.render`-Hook und `Esse\Ui`-Komponenten
 - Icon-Pack-agnostisch — Icon-Namen werden ohne Prefix übergeben, das aktive Pack liefert den Prefix
 
+## Datenbankstruktur
+
+| Tabelle | Zweck |
+|---|---|
+| `news` | News-Beiträge (Datum, Zeit, Überschrift, Kurztext, Inhalt, Autor, Aktiv-/Sichtbarkeitsstatus) |
+
 ## Dateistruktur
 
 ```
@@ -66,6 +76,13 @@ esse-news/
     ├── list.php          Frontend-Übersichtsseite (/news)
     └── detail.php        Frontend-Detailseite (/news/{id})
 ```
+
+## Sicherheit
+
+- Interne News sind nur für eingeloggte Mitglieder sichtbar — der Sichtbarkeits-Filter greift sowohl in der Übersicht als auch auf der Detailseite (`NewsRepository::listPublic()`/`findPublic()`)
+- Autor wird serverseitig vom eingeloggten User gesetzt, nicht aus dem Request übernommen
+- CSRF-Schutz (`Auth::verifyCsrf()`) auf allen POST-Actions im Admin-Bereich
+- Bild-Uploads im WYSIWYG-Editor laufen über die zentrale Upload-Route des Cores (`/admin/files/upload`)
 
 ## Lizenz
 
