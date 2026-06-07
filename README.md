@@ -69,5 +69,6 @@ esse-news/
 
 ## Lizenz
 
-Copyright (C) 2026 Andreas P. <https://nfsmw15.de>  
-SPDX-License-Identifier: AGPL-3.0-or-later
+AGPL-3.0-or-later — siehe [LICENSE](LICENSE)
+
+Copyright (C) 2026 Andreas P. — [nfsmw15.de](https://nfsmw15.de)
