@@ -1,6 +1,6 @@
 {
     "name": "esse-news",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "News-System für ESSE CMS.",
     "author": "Andreas P.",
     "class": "EsseNews\\Plugin",

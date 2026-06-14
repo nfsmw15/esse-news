@@ -1,6 +1,6 @@
 # Changelog — esse-news
 
-## [Unreleased]
+## [0.1.2] — 2026-06-14
 
 ### Behoben
 
