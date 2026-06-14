@@ -1,5 +1,24 @@
 # Changelog — esse-news
 
+## [Unreleased]
+
+### Behoben
+
+- **CSP-Konformität**: Inline `<style>`/`<script>`-Blöcke und ein Inline-`style`-Attribut
+  in `admin/form.php` bzw. `admin/list.php` verstießen gegen die CSP (`script-src 'self'`,
+  `style-src 'self'`). CSS und JS nach `assets/css/news-admin.css` bzw.
+  `assets/js/news-admin.js` ausgelagert, über eine eigene Plugin-Asset-Route ausgeliefert
+  und per `$extraHead`/`$extraScriptFiles` eingebunden. Inline-`style="white-space:nowrap"`
+  durch Bootstrap-Klasse `text-nowrap` ersetzt.
+- Editor-Initialisierung nutzte das veraltete `$extraScripts` (vom Admin-Layout nicht mehr
+  unterstützt) — auf `$extraScriptConfig`/`$extraScriptFiles` umgestellt, Konfiguration
+  (Editor-Selektor, Upload-URL) läuft jetzt über den JSON-Konfig-Block.
+
+### Hinzugefügt
+
+- "Aus Mediathek einfügen"-Button im Summernote-Editor (`admin/partials/media-picker.php`
+  + `media-button.js`, analog zum CMS-eigenen Seiteneditor).
+
 ## [0.1.1] — 2026-06-05
 
 ### Behoben

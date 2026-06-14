@@ -20,7 +20,10 @@ $.fn.popover = function(opt) {
 };
 
 (function() {
-    $("#news").summernote({
+    const configEl = document.getElementById('news-editor-config');
+    const config = configEl ? JSON.parse(configEl.textContent || '{}') : {};
+
+    $(config.selector).summernote({
         lang: "de-DE",
         height: 380,
         placeholder: "News-Text ...",
@@ -30,17 +33,20 @@ $.fn.popover = function(opt) {
             ["color",  ["color"]],
             ["para",   ["ul", "ol", "paragraph"]],
             ["table",  ["table"]],
-            ["insert", ["link", "picture", "hr"]],
+            ["insert", ["link", "picture", "media", "hr"]],
             ["view",   ["fullscreen", "codeview"]]
         ],
+        buttons: {
+            media: window.EsseMediaButton,
+        },
         callbacks: {
             onImageUpload: function(files) {
                 const fd = new FormData();
                 fd.append("file", files[0]);
-                fetch("/admin/files/upload", { method: "POST", body: fd })
+                fetch(config.uploadUrl, { method: "POST", body: fd })
                     .then(r => r.json())
                     .then(d => {
-                        if (d.url) $("#news").summernote("insertImage", d.url, files[0].name);
+                        if (d.url) $(config.selector).summernote("insertImage", d.url, files[0].name);
                         else alert(d.error || "Upload fehlgeschlagen.");
                     });
             }

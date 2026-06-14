@@ -73,14 +73,6 @@ $f = (!empty($errors) && $_SERVER['REQUEST_METHOD'] === 'POST')
 $pageTitle = $isEdit ? 'News bearbeiten' : 'Neue News';
 $activeNav = 'admin.news';
 
-$extraHead = '<link rel="stylesheet" href="/public/vendor/summernote/summernote-bs5.min.css">
-<link rel="stylesheet" href="/plugins/esse-news/assets/css/news-admin.css">';
-
-$extraScripts = '<script src="/public/vendor/summernote/jquery.min.js"></script>
-<script src="/public/vendor/summernote/summernote-bs5.min.js"></script>
-<script src="/public/vendor/summernote/summernote-de-DE.min.js"></script>
-<script src="/plugins/esse-news/assets/js/news-admin.js"></script>';
-
 ob_start();
 ?>
 <div class="mb-3">
@@ -174,6 +166,26 @@ ob_start();
         </div>
     </div>
 </form>
+
+<?php require ESSE_ROOT . '/admin/partials/media-picker.php'; ?>
 <?php
 $content = ob_get_clean();
+
+$extraHead = '<link rel="stylesheet" href="/public/vendor/summernote/summernote-bs5.min.css">
+<link rel="stylesheet" href="/plugins/esse-news/assets/css/news-admin.css">';
+
+$extraScriptConfig = array_merge($extraScriptConfig ?? [], [
+    'news-editor-config' => [
+        'selector'  => '#news',
+        'uploadUrl' => '/admin/files/upload',
+    ],
+]);
+$extraScriptFiles = array_merge($extraScriptFiles ?? [], [
+    '/public/vendor/summernote/jquery.min.js',
+    '/public/vendor/summernote/summernote-bs5.min.js',
+    '/public/vendor/summernote/summernote-de-DE.min.js',
+    '/public/assets/js/media-button.js',
+    '/plugins/esse-news/assets/js/news-admin.js',
+]);
+
 require ESSE_ROOT . '/admin/layout.php';
