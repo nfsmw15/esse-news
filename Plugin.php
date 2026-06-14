@@ -22,6 +22,21 @@ class Plugin extends \Esse\Plugin
 
         $base = $this->basePath();
 
+        // Asset-Serving
+        Router::get('/plugins/esse-news/assets/css/{file}', function (string $file) use ($base) {
+            $path = $base . '/assets/css/' . basename($file);
+            if (!file_exists($path)) { http_response_code(404); exit; }
+            header('Content-Type: text/css');
+            readfile($path);
+        }, ['name' => 'news.assets.css', 'auth' => 'public']);
+
+        Router::get('/plugins/esse-news/assets/js/{file}', function (string $file) use ($base) {
+            $path = $base . '/assets/js/' . basename($file);
+            if (!file_exists($path)) { http_response_code(404); exit; }
+            header('Content-Type: application/javascript');
+            readfile($path);
+        }, ['name' => 'news.assets.js', 'auth' => 'public']);
+
         // Frontend
         Router::get('/news', fn() => PageRenderer::renderFile("{$base}/frontend/list.php", 'News', 'public', 'newspaper'),
             ['name' => 'news.list', 'auth' => 'public']);

@@ -98,7 +98,7 @@ ob_start();
                             </span>
                         <?php endif ?>
                     </td>
-                    <td class="text-end" style="white-space:nowrap">
+                    <td class="text-end text-nowrap">
                         <a href="/admin/news/edit/<?= (int) $row['id'] ?>"
                            class="btn btn-sm btn-outline-secondary" title="Bearbeiten">
                             <i class="bi bi-pencil"></i>
